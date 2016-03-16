@@ -3,6 +3,6 @@ FactoryGirl.define do
     title { Forgery::LoremIpsum.title(random: true) }
     description { Forgery::LoremIpsum.paragraphs }
     status :new_task
-    user nil
+    user
   end
 end
