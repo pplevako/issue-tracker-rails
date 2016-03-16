@@ -8,7 +8,7 @@ RSpec.describe TasksController, type: :controller do
   end
 
   describe 'POST create' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user, :customer) }
 
     before do
       sign_in user
@@ -26,5 +26,9 @@ RSpec.describe TasksController, type: :controller do
         expect(response.status).to eq(201)
       end
     end
+  end
+
+  describe 'PATCH update' do
+
   end
 end

@@ -3,6 +3,9 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_task, only: [:show, :update]
 
+  after_action :verify_authorized, except: :index, :show
+  after_action :verify_policy_scoped, only: :index
+
   def index
     @tasks = Task.all
     respond_with @tasks
@@ -13,21 +16,19 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.tasks.create(task_params)
+    @task = current_user.tasks.new
+    @task.update_attributes(permitted_attributes(@task))
+    authorize @task
     respond_with @task
   end
 
   def update
-    @task.update_attributes(task_params)
+    authorize @task
+    @task.update_attributes(permitted_attributes(@task))
     respond_with @task
   end
 
   private
-
-  def task_params
-    # TODO: use different permitted params for customer and developer?
-    params.require(:task).permit(:title, :description, :status)
-  end
 
   def set_task
     @task = Task.find(params[:id])
