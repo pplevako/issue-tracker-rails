@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user do
     email { Forgery(:internet).email_address }
     password { 'keyboardcat' }
+    password_confirmation { 'keyboardcat' }
 
     # TODO: maybe remove after_stub because add_role uses database, making stubbing pointless
     trait :customer do

@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
 
   # TODO: maybe rename to owned_tasks
   has_many :tasks
+
+  def add_regular_role(role)
+    if Role.regular_roles.include?(role)
+      add_role role unless has_role? role
+    else
+      add_role :customer
+    end
+  end
 end

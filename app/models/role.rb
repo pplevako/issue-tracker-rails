@@ -7,4 +7,8 @@ class Role < ActiveRecord::Base
             :allow_nil => true
 
   scopify
+
+  def self.regular_roles
+    %w(customer developer)
+  end
 end
