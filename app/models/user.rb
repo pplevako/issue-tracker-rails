@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   def add_regular_role(role)
     if Role.regular_roles.include?(role)
-      add_role role unless has_role? role
+      add_role role
     else
       add_role :customer
     end
