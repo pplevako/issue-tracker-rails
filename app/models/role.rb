@@ -8,7 +8,7 @@ class Role < ActiveRecord::Base
 
   scopify
 
-  def self.regular_roles
-    %w(customer developer)
+  def self.regular_role?(role)
+    %w(customer developer).include?(role.to_s)
   end
 end

@@ -17,5 +17,12 @@ RSpec.describe User, type: :model do
       expect(user.has_role? :customer).to be false
       expect(user.has_role? :developer).to be true
     end
+
+    it 'accepts string value of the role' do
+      user.add_regular_role('developer')
+
+      expect(user.has_role? :customer).to be false
+      expect(user.has_role? :developer).to be true
+    end
   end
 end

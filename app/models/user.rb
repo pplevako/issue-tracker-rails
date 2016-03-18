@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :tasks
 
   def add_regular_role(role)
-    if Role.regular_roles.include?(role)
+    if Role.regular_role?(role)
       add_role role
     else
       add_role :customer
